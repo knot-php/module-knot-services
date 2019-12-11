@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotModule\KnotService\Test;
+namespace KnotPhp\Module\KnotService\Test;
 
 use PHPUnit\Framework\TestCase;
 use KnotLib\Kernel\Module\Components;
-use KnotModule\KnotService\KnotServiceModule;
 use KnotModule\KnotDi\KnotDiModule;
 use KnotLib\Service\DI;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\ValidationService;
 use KnotLib\Service\RequestService;
+
+use KnotPhp\Module\KnotService\KnotServiceModule;
 
 final class KnotServiceModuleTest extends TestCase
 {

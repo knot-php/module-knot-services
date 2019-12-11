@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotModule\KnotService\Test;
+namespace KnotPhp\Module\KnotService\Test;
 
 use KnotLib\Kernel\Kernel\AbstractApplication;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
