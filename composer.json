@@ -21,7 +21,7 @@
   "require-dev": {
     "phpunit/phpunit": "^6.3.0",
     "php-coveralls/php-coveralls": "^2.0",
-    "knot-module/knot-di": "~0.1"
+    "knot-php/module-knot-di": "~0.1"
   },
   "autoload": {
     "psr-4": {
