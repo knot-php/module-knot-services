@@ -10,11 +10,12 @@ use KnotLib\Service\DI;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\ValidationService;
-use KnotLib\Service\RequestService;
 
 use KnotPhp\Module\KnotDi\KnotDiModule;
 
 use KnotPhp\Module\KnotService\KnotServiceModule;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class KnotServiceModuleTest extends TestCase
 {
@@ -46,9 +47,11 @@ final class KnotServiceModuleTest extends TestCase
 
         $this->assertNotNull($di);
 
+        $this->assertInstanceOf(ServerRequestInterface::class, $di[DI::COMPONENT_REQUEST]);
+        $this->assertInstanceOf(ResponseInterface::class, $di[DI::COMPONENT_RESPONSE]);
+
         $this->assertInstanceOf(FileSystemService::class, $di[DI::SERVICE_FILESYSTEM]);
         $this->assertInstanceOf(LoggerService::class, $di[DI::SERVICE_LOGGER]);
         $this->assertInstanceOf(ValidationService::class, $di[DI::SERVICE_VALIDATION]);
-        $this->assertInstanceOf(RequestService::class, $di[DI::SERVICE_REQUEST]);
     }
 }

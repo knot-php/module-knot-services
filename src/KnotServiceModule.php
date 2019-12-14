@@ -5,7 +5,6 @@ namespace KnotPhp\Module\KnotService;
 
 use Throwable;
 
-use KnotLib\Service\RequestService;
 use KnotLib\Kernel\Module\Components;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
@@ -56,8 +55,23 @@ final class KnotServiceModule extends ComponentModule
             $fs = $app->filesystem();
             $logger = $app->logger();
             $request = $app->request();
+            $response = $app->response();
 
             $c = $app->di();
+
+            //====================================
+            // Components
+            //====================================
+
+            // PSR-7 server request component
+            $c[DI::COMPONENT_REQUEST] = $request;
+
+            // PSR-7 response component
+            $c[DI::COMPONENT_RESPONSE] = $response;
+
+            //====================================
+            // Services
+            //====================================
 
             // services.filesystem factory
             $c[DI::SERVICE_FILESYSTEM] = function() use($fs){
@@ -72,11 +86,6 @@ final class KnotServiceModule extends ComponentModule
             // services.validation factory
             $c[DI::SERVICE_VALIDATION] = function(){
                 return new ValidationService();
-            };
-
-            // services.request factory
-            $c[DI::SERVICE_REQUEST] = function() use($request){
-                return new RequestService($request);
             };
 
             // fire event
