@@ -47,11 +47,11 @@ final class KnotServiceModuleTest extends TestCase
 
         $this->assertNotNull($di);
 
-        $this->assertInstanceOf(ServerRequestInterface::class, $di[DI::COMPONENT_REQUEST]);
-        $this->assertInstanceOf(ResponseInterface::class, $di[DI::COMPONENT_RESPONSE]);
+        $this->assertInstanceOf(ServerRequestInterface::class, $di[DI::URI_COMPONENT_REQUEST]);
+        $this->assertInstanceOf(ResponseInterface::class, $di[DI::URI_COMPONENT_RESPONSE]);
 
-        $this->assertInstanceOf(FileSystemService::class, $di[DI::SERVICE_FILESYSTEM]);
-        $this->assertInstanceOf(LoggerService::class, $di[DI::SERVICE_LOGGER]);
-        $this->assertInstanceOf(ValidationService::class, $di[DI::SERVICE_VALIDATION]);
+        $this->assertInstanceOf(FileSystemService::class, $di[DI::URI_SERVICE_FILESYSTEM]);
+        $this->assertInstanceOf(LoggerService::class, $di[DI::URI_SERVICE_LOGGER]);
+        $this->assertInstanceOf(ValidationService::class, $di[DI::URI_SERVICE_VALIDATION]);
     }
 }

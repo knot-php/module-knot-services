@@ -64,27 +64,27 @@ final class KnotServiceModule extends ComponentModule
             //====================================
 
             // PSR-7 server request component
-            $c[DI::COMPONENT_REQUEST] = $request;
+            $c[DI::URI_COMPONENT_REQUEST] = $request;
 
             // PSR-7 response component
-            $c[DI::COMPONENT_RESPONSE] = $response;
+            $c[DI::URI_COMPONENT_RESPONSE] = $response;
 
             //====================================
             // Services
             //====================================
 
             // services.filesystem factory
-            $c[DI::SERVICE_FILESYSTEM] = function() use($fs){
+            $c[DI::URI_SERVICE_FILESYSTEM] = function() use($fs){
                 return new FileSystemService($fs);
             };
 
             // services.logger factory
-            $c[DI::SERVICE_LOGGER] = function() use($logger){
+            $c[DI::URI_SERVICE_LOGGER] = function() use($logger){
                 return new LoggerService($logger);
             };
 
             // services.validation factory
-            $c[DI::SERVICE_VALIDATION] = function(){
+            $c[DI::URI_SERVICE_VALIDATION] = function(){
                 return new ValidationService();
             };
 
