@@ -11,7 +11,6 @@ use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ComponentModule;
 use KnotLib\Kernel\EventStream\Events;
 use KnotLib\Kernel\EventStream\Channels as EventChannels;
-use KnotLib\Service\DI;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\ValidationService;
@@ -64,27 +63,27 @@ final class KnotServiceModule extends ComponentModule
             //====================================
 
             // PSR-7 server request component
-            $c[DI::URI_COMPONENT_REQUEST] = $request;
+            $c['component://request'] = $request;
 
             // PSR-7 response component
-            $c[DI::URI_COMPONENT_RESPONSE] = $response;
+            $c['component://response'] = $response;
 
             //====================================
             // Services
             //====================================
 
-            // services.filesystem factory
-            $c[DI::URI_SERVICE_FILESYSTEM] = function() use($fs){
+            // service.filesystem factory
+            $c['service://filesystem'] = function() use($fs){
                 return new FileSystemService($fs);
             };
 
-            // services.logger factory
-            $c[DI::URI_SERVICE_LOGGER] = function() use($logger){
+            // service.logger factory
+            $c['service://logger'] = function() use($logger){
                 return new LoggerService($logger);
             };
 
-            // services.validation factory
-            $c[DI::URI_SERVICE_VALIDATION] = function(){
+            // service.validation factory
+            $c['service://validation'] = function(){
                 return new ValidationService();
             };
 
