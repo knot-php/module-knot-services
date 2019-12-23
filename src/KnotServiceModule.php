@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace KnotPhp\Module\KnotService;
 
+use KnotLib\Service\DI;
 use Throwable;
 
 use KnotLib\Kernel\Module\Components;
@@ -62,28 +63,28 @@ final class KnotServiceModule extends ComponentModule
             // Components
             //====================================
 
-            // PSR-7 server request component
-            $c['component://request'] = $request;
+            // component://request component
+            $c[DI::URI_COMPONENT_REQUEST] = $request;
 
-            // PSR-7 response component
-            $c['component://response'] = $response;
+            // component://response component
+            $c[DI::URI_COMPONENT_RESPONSE] = $response;
 
             //====================================
             // Services
             //====================================
 
             // service.filesystem factory
-            $c['service://filesystem'] = function() use($fs){
+            $c[DI::URI_SERVICE_FILESYSTEM] = function() use($fs){
                 return new FileSystemService($fs);
             };
 
             // service.logger factory
-            $c['service://logger'] = function() use($logger){
+            $c[DI::URI_SERVICE_LOGGER] = function() use($logger){
                 return new LoggerService($logger);
             };
 
             // service.validation factory
-            $c['service://validation'] = function(){
+            $c[DI::URI_SERVICE_VALIDATION] = function(){
                 return new ValidationService();
             };
 
