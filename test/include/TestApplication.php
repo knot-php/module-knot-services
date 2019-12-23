@@ -16,15 +16,15 @@ final class TestApplication extends AbstractApplication
 
     public function install(): ApplicationInterface
     {
-        $this->installModules($this->getRequiredModules());
+        foreach($this->getRequiredModules() as $m){
+            $this->installModule($m);
+        }
         return $this;
     }
 
-    public function installModules(array $modules): ApplicationInterface
+    public function installModule(string $module_class): ApplicationInterface
     {
-        foreach($modules as $m){
-            $this->addInstalledModule($m);
-        }
+        $this->addInstalledModule($module_class);
         return $this;
     }
 }
