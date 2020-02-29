@@ -5,7 +5,7 @@ namespace KnotPhp\Module\KnotService\Test;
 
 use PHPUnit\Framework\TestCase;
 
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Service\DI;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
@@ -19,18 +19,19 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class KnotServiceModuleTest extends TestCase
 {
-    public function testRequiredComponents()
+    public function testRequiredComponentTypes()
     {
-        $this->assertEquals([
-            Components::DI,
-            Components::LOGGER,
-            Components::EVENTSTREAM,
-        ],
-            KnotServiceModule::requiredComponents());
+        $this->assertEquals(
+            [
+                ComponentTypes::DI,
+                ComponentTypes::LOGGER,
+                ComponentTypes::EVENTSTREAM,
+            ],
+            KnotServiceModule::requiredComponentTypes());
     }
     public function testDeclareComponentType()
     {
-        $this->assertEquals(Components::MODULE, KnotServiceModule::declareComponentType());
+        $this->assertEquals(ComponentTypes::SERVICE, KnotServiceModule::declareComponentType());
     }
 
     /**
