@@ -3,32 +3,42 @@ declare(strict_types=1);
 
 namespace KnotPhp\Module\KnotService;
 
-use KnotLib\Service\DI;
 use Throwable;
 
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Module\ComponentModule;
+use KnotLib\Kernel\Module\ModuleInterface;
+use KnotLib\Service\DI;
 use KnotLib\Kernel\EventStream\Events;
 use KnotLib\Kernel\EventStream\Channels as EventChannels;
 use KnotLib\Service\FileSystemService;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\ValidationService;
 
-final class KnotServiceModule extends ComponentModule
+final class KnotServiceModule implements ModuleInterface
 {
+    /**
+     * Declare dependency on another modules
+     *
+     * @return array
+     */
+    public static function requiredModules() : array
+    {
+        return [];
+    }
+
     /**
      * Declare dependent on components
      *
      * @return array
      */
-    public static function requiredComponents() : array
+    public static function requiredComponentTypes() : array
     {
         return [
-            Components::DI,
-            Components::LOGGER,
-            Components::EVENTSTREAM,
+            ComponentTypes::DI,
+            ComponentTypes::LOGGER,
+            ComponentTypes::EVENTSTREAM,
         ];
     }
 
@@ -39,7 +49,7 @@ final class KnotServiceModule extends ComponentModule
      */
     public static function declareComponentType() : string
     {
-        return Components::MODULE;
+        return ComponentTypes::SERVICE;
     }
 
     /**
@@ -60,7 +70,7 @@ final class KnotServiceModule extends ComponentModule
             $c = $app->di();
 
             //====================================
-            // Components
+            // ComponentTypes
             //====================================
 
             // component://request component
